@@ -16,6 +16,7 @@ const SearchParams = () => {
   const [selectedVersion, setSelectedVersion] = useState("");
 
   const [updateFiles, setUpdateFiles] = useState([]);
+  const [apiCallMade, setApiCallMade] = useState(false);
 
   async function getCountry() {
     const res = await axios.get(`https://ipapi.co/json/`);
@@ -60,6 +61,7 @@ const SearchParams = () => {
     };
     const res = await axios.post(`${apiUrl}/update`, body);
     setUpdateFiles(res.data.files || []);
+    setApiCallMade(true);
   }
 
   useEffect(() => {
@@ -124,7 +126,7 @@ const SearchParams = () => {
           </div>
         </form>
       </div>
-      <Results updateFiles={updateFiles} />
+      {apiCallMade && <Results updateFiles={updateFiles} />}
     </div>
   );
 };
