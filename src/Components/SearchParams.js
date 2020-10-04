@@ -72,6 +72,7 @@ const SearchParams = () => {
   useEffect(() => {
     setVersions([]);
     getVersions();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPackage]);
 
   return (
